@@ -21,9 +21,11 @@ export default function WelcomeScreen() {
               resizeMode="contain"
             />
             <View className="flex flex-col items-center">
-              <Text className="font-pbold text-white text-3xl">JAGRUTHI</Text>
+              <Text className="font-pbold text-white text-3xl">
+                {"JAGRUTHI "}{" "}
+              </Text>
               <Text className="text-white font-pregular text-sm">
-                ಜಾನುವಾರುಗಳ ಗುರುತಿಸಿ
+                ಜಾನುವಾರು ಗುರುತಿಸಿ
               </Text>
             </View>
           </View>
@@ -34,9 +36,9 @@ export default function WelcomeScreen() {
           />
 
           <View className="flex items-center mt-5">
-            <Text className="text-2xl text-white font-pbold text-center mt-3 px-8">
-              Identifying Breeds, Empowering Care with{" "}
-              <Text className="text-secondary-200">JAGRUTHI</Text>
+            <Text className="text-2xl text-white font-pbold text-center mt-3">
+              {"Identifying Breeds, Empowering Care with"}{" "}
+              <Text className="text-secondary-200">JAGRUTHI </Text>
             </Text>
             <Image
               source={images.path}
@@ -52,7 +54,7 @@ export default function WelcomeScreen() {
           />
 
           <Text className="text-white font-pregular text-sm mt-5">
-            ಜೆಎಸ್‌ಎಸ್‌ಎಟಿಇ ಬೆಂಗಳೂರು ಪ್ರಾಯೋಜಿತ
+            {"ಜೆಎಸ್‌ಎಸ್‌ಎಟಿಇ ಬೆಂಗಳೂರು ಪ್ರಾಯೋಜಿತ"}
           </Text>
         </View>
       </ScrollView>

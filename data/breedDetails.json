@@ -1,0 +1,22 @@
+{
+  "Barbery": {
+    "name": "Barbery",
+    "description": "The Barbery sheep is known for its adaptability and resilience in arid regions.",
+    "origin": "North Africa",
+    "characteristics": [
+      "Medium size",
+      "Good adaptability to desert climates",
+      "Distinctive coat texture"
+    ]
+  },
+  "Harry": {
+    "name": "Harry",
+    "description": "The Harry sheep is a rare breed, valued for its wool and calm temperament.",
+    "origin": "Highlands",
+    "characteristics": [
+      "Soft wool texture",
+      "Hardy in colder climates",
+      "Known for friendly demeanor"
+    ]
+  }
+}

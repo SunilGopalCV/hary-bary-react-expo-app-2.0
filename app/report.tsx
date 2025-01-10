@@ -4,16 +4,28 @@ import {
   Text,
   Image,
   Button,
-  StyleSheet,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import { useAppContext } from "../contexts/AppContext";
 import axios from "axios";
 import { useRouter } from "expo-router";
+import LottieView from "lottie-react-native";
+import breedDetails from "../data/breedDetails.json";
+import { SafeAreaView } from "react-native-safe-area-context";
+import CustomButton from "@/components/CustomButton";
+
+interface BreedDetails {
+  name: string;
+  description: string;
+  origin: string;
+  characteristics: string[];
+}
 
 export default function ReportScreen() {
   const { imageUri, result, setResult } = useAppContext();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Start with loading state
+  const [breedDetail, setBreedDetail] = useState<BreedDetails | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -23,7 +35,6 @@ export default function ReportScreen() {
   }, [imageUri]);
 
   const fetchPrediction = async () => {
-    setIsLoading(true);
     try {
       const formData = new FormData();
       formData.append("file", {
@@ -38,44 +49,105 @@ export default function ReportScreen() {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
 
-      setResult(response.data);
+      const predictionResult = response.data;
+      setResult(predictionResult);
+
+      const predictedBreed = Object.keys(predictionResult.predictions).reduce(
+        (a, b) =>
+          predictionResult.predictions[a] > predictionResult.predictions[b]
+            ? a
+            : b
+      );
+
+      // Fetch breed details from imported JSON
+      const breedDetail = breedDetails[predictedBreed];
+      if (breedDetail) {
+        setBreedDetail(breedDetail);
+      } else {
+        alert("Breed details not found.");
+      }
     } catch (error) {
       console.error("API Request Failed:", error);
       alert("Failed to fetch prediction.");
     } finally {
-      setIsLoading(false);
+      setIsLoading(false); // Stop loading after API call
     }
   };
 
+  // Show a loading spinner until the results are fetched
+  if (isLoading) {
+    return (
+      <View className="flex-1 justify-center items-center bg-primary">
+        <LottieView
+          source={require("../assets/animations/analysis.json")} // Replace with your Lottie file path
+          autoPlay
+          loop
+          style={{ width: 200, height: 200 }}
+        />
+        <Text className="text-xl font-pbold text-white mt-4">
+          Analyzing Image...
+        </Text>
+      </View>
+    );
+  }
+
+  // Show the report once loading is complete
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: imageUri }} style={styles.image} />
-      {isLoading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : result ? (
-        <View style={styles.resultsContainer}>
-          <Text style={styles.resultText}>
-            Barbery: {(result.predictions.Barbery * 100).toFixed(2)}%
-          </Text>
-          <Text style={styles.resultText}>
-            Harry: {(result.predictions.Harry * 100).toFixed(2)}%
-          </Text>
-          <Text style={styles.resultText}>
-            Inference Time: {result.inference_time}s
-          </Text>
+    <SafeAreaView className="bg-primary h-full py-10">
+      <ScrollView>
+        <View className="flex-1 justify-center items-center">
+          <Image
+            source={{ uri: imageUri }}
+            className="w-80 h-80 rounded-lg mb-6"
+            alt="Uploaded Image"
+          />
+          {breedDetail ? (
+            <View className="flex gap-5 px-4">
+              <View className="flex items-center justify-center bg-black-200 rounded-lg p-4">
+                <Text className="text-3xl font-pbold text-gray-100">
+                  {breedDetail.name}
+                </Text>
+              </View>
+              <View className="flex justify-center bg-black-200 rounded-lg p-4">
+                <Text className="text-lg font-psemibold text-gray-100">
+                  About:{" "}
+                </Text>
+                <View className="h-1 w-full bg-gray-500 rounded-full mb-2" />
+                <Text className="text-md font-pmedium text-gray-100">
+                  {breedDetail.description}
+                </Text>
+              </View>
+
+              <View className="flex flex-row items-center bg-black-200 rounded-lg p-4">
+                <Text className="text-lg font-psemibold text-gray-100">
+                  Origin:{" "}
+                </Text>
+                <Text className="text-md font-pmedium text-gray-100">
+                  {breedDetail.origin}
+                </Text>
+              </View>
+
+              <View className="flex bg-black-200 rounded-lg p-4">
+                <Text className="text-lg font-psemibold text-gray-100">
+                  Characteristics:{" "}
+                </Text>
+                <View className="h-1 w-full bg-gray-500 rounded-full mb-2" />
+                {breedDetail.characteristics.map((char, index) => (
+                  <Text
+                    key={index}
+                    className="text-md font-pmedium text-gray-100"
+                  >{`- ${char}`}</Text>
+                ))}
+              </View>
+            </View>
+          ) : null}
+          <CustomButton
+            title="Capture Again"
+            handlePress={() => router.push("/camerascreen")}
+            containerStyles="min-w-80 mt-10"
+          />
         </View>
-      ) : null}
-      <Button
-        title="Capture Again"
-        onPress={() => router.push("/camerascreen")}
-      />
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
-  image: { width: 200, height: 200 },
-  resultText: { fontSize: 18, fontWeight: "bold", marginVertical: 5 },
-  resultsContainer: { alignItems: "center", marginVertical: 20 },
-});
