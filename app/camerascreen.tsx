@@ -59,7 +59,7 @@ export default function CameraScreen() {
             >
               <FontAwesome name="camera" size={54} color="#d9d9db" />
               <Text className="text-white max-w-[120px] text-center font-pregular text-lg">
-                ಕ್ಯಾಮೆರಾ ಆನ್
+                Camera Capture
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -68,7 +68,7 @@ export default function CameraScreen() {
             >
               <Entypo name="folder-images" size={54} color="#d9d9db" />
               <Text className="text-white max-w-[120px] text-center  font-pregular text-lg">
-                ಗ್ಯಾಲರಿ ಅಪ್ಲೋಡ್
+                Gallery Upload
               </Text>
             </TouchableOpacity>
           </View>

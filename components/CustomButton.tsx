@@ -1,7 +1,7 @@
 import { ActivityIndicator, Text, TouchableOpacity } from "react-native";
 
 const CustomButton = ({
-  title = "Button",
+  title = "",
   handlePress = () => {},
   containerStyles = "",
   textStyles = "",

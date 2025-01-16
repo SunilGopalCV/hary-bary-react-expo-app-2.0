@@ -12,6 +12,10 @@ import eyeHide from "../assets/icons/eye-hide.png";
 import eye from "../assets/icons/eye.png";
 import play from "../assets/icons/play.png";
 import heart from "../assets/icons/heart.png";
+import sheep from "../assets/icons/sheep.png";
+import buffalo from "../assets/icons/buffalo.png";
+import goat from "../assets/icons/goat.png";
+import cow from "../assets/icons/cow.png";
 
 export default {
   play,
@@ -28,4 +32,8 @@ export default {
   eyeHide,
   eye,
   heart,
+  sheep,
+  buffalo,
+  goat,
+  cow,
 };

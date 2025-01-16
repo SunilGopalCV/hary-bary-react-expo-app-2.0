@@ -1,22 +1,56 @@
 {
-  "Barbery": {
-    "name": "Barbery",
-    "description": "The Barbery sheep is known for its adaptability and resilience in arid regions.",
-    "origin": "North Africa",
-    "characteristics": [
-      "Medium size",
-      "Good adaptability to desert climates",
-      "Distinctive coat texture"
-    ]
+  "Murra": {
+    "name": "Murrah",
+    "type": "Buffalo",
+    "origin": "Haryana and Punjab, but popular in Karnataka for dairy purposes.",
+    "purpose": "High milk yield; primarily used for dairy farming.",
+    "physicalTraits": "Black color, compact body, tightly curled horns.",
+    "milkYield": "8-16 liters/day",
+    "icon": "buffalo"
   },
-  "Harry": {
-    "name": "Harry",
-    "description": "The Harry sheep is a rare breed, valued for its wool and calm temperament.",
-    "origin": "Highlands",
-    "characteristics": [
-      "Soft wool texture",
-      "Hardy in colder climates",
-      "Known for friendly demeanor"
-    ]
+  "Girr": {
+    "name": "Gir",
+    "type": "Cow",
+    "origin": "Gujarat, but widely adapted in Karnataka due to high milk production.",
+    "purpose": "Dairy; high butterfat milk.",
+    "physicalTraits": "Hump, convex forehead, long ears, reddish or spotted white.",
+    "milkYield": "10-15 liters/day",
+    "icon": "cow"
+  },
+  "Sirohi": {
+    "name": "Sirohi",
+    "type": "Goat",
+    "origin": "Rajasthan; adapted to Karnataka for meat and milk production.",
+    "purpose": "Dual-purpose (meat and milk).",
+    "physicalTraits": "Medium size, short hair, light brown or white with dark patches.",
+    "milkYield": "0.5-1.5 liters/day",
+    "icon": "goat"
+  },
+  "Kenguri": {
+    "name": "Kenguri",
+    "type": "Sheep",
+    "origin": "Karnataka (Raichur, Koppal districts).",
+    "purpose": "Meat production.",
+    "physicalTraits": "Brown body, medium build, hardy breed.",
+    "specialFeature": "Highly adapted to dry conditions.",
+    "icon": "sheep"
+  },
+  "Deoni": {
+    "name": "Deoni",
+    "type": "Cow",
+    "origin": "Karnataka, Maharashtra, and Andhra Pradesh border regions.",
+    "purpose": "Dual-purpose (milk and draught).",
+    "physicalTraits": "White body with black patches, strong build, drooping ears.",
+    "milkYield": "3-5 liters/day",
+    "icon": "cow"
+  },
+  "Bidri": {
+    "name": "Bidri",
+    "type": "Sheep",
+    "origin": "Karnataka (Bidar region).",
+    "purpose": "Meat production.",
+    "physicalTraits": "Small to medium size, usually white with black patches.",
+    "specialFeature": "High demand for quality meat in local markets.",
+    "icon": "sheep"
   }
 }

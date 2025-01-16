@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  Image,
-  Button,
-  ActivityIndicator,
-  ScrollView,
-} from "react-native";
+import { View, Text, Image, ScrollView } from "react-native";
 import { useAppContext } from "../contexts/AppContext";
 import axios from "axios";
 import { useRouter } from "expo-router";
@@ -14,17 +7,22 @@ import LottieView from "lottie-react-native";
 import breedDetails from "../data/breedDetails.json";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CustomButton from "@/components/CustomButton";
+import icons from "@/constants/icons";
 
 interface BreedDetails {
   name: string;
-  description: string;
+  type: string;
   origin: string;
-  characteristics: string[];
+  purpose: string;
+  physicalTraits: string;
+  milkYield?: string;
+  specialFeature?: string;
+  icon: string;
 }
 
 export default function ReportScreen() {
   const { imageUri, result, setResult } = useAppContext();
-  const [isLoading, setIsLoading] = useState(true); // Start with loading state
+  const [isLoading, setIsLoading] = useState(true);
   const [breedDetail, setBreedDetail] = useState<BreedDetails | null>(null);
   const router = useRouter();
 
@@ -44,7 +42,7 @@ export default function ReportScreen() {
       });
 
       const response = await axios.post(
-        "https://sheep-harry-barbary-model-api.onrender.com/predict/",
+        "https://jagruthi-effnetb2-api-803431563668.asia-south1.run.app/predict/",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
@@ -59,7 +57,6 @@ export default function ReportScreen() {
             : b
       );
 
-      // Fetch breed details from imported JSON
       const breedDetail = breedDetails[predictedBreed];
       if (breedDetail) {
         setBreedDetail(breedDetail);
@@ -70,16 +67,15 @@ export default function ReportScreen() {
       console.error("API Request Failed:", error);
       alert("Failed to fetch prediction.");
     } finally {
-      setIsLoading(false); // Stop loading after API call
+      setIsLoading(false);
     }
   };
 
-  // Show a loading spinner until the results are fetched
   if (isLoading) {
     return (
       <View className="flex-1 justify-center items-center bg-primary">
         <LottieView
-          source={require("../assets/animations/analysis.json")} // Replace with your Lottie file path
+          source={require("../assets/animations/analysis.json")}
           autoPlay
           loop
           style={{ width: 200, height: 200 }}
@@ -91,60 +87,102 @@ export default function ReportScreen() {
     );
   }
 
-  // Show the report once loading is complete
   return (
     <SafeAreaView className="bg-primary h-full py-10">
       <ScrollView>
-        <View className="flex-1 justify-center items-center">
+        <View className="flex-1 items-center px-4">
+          {/* Uploaded Image */}
           <Image
             source={{ uri: imageUri }}
-            className="w-80 h-80 rounded-lg mb-6"
+            className="w-80 h-80 rounded-lg mb-6 shadow-lg"
             alt="Uploaded Image"
           />
-          {breedDetail ? (
-            <View className="flex gap-5 px-4">
-              <View className="flex items-center justify-center bg-black-200 rounded-lg p-4">
-                <Text className="text-3xl font-pbold text-gray-100">
-                  {breedDetail.name}
-                </Text>
-              </View>
-              <View className="flex justify-center bg-black-200 rounded-lg p-4">
-                <Text className="text-lg font-psemibold text-gray-100">
-                  About:{" "}
-                </Text>
-                <View className="h-1 w-full bg-gray-500 rounded-full mb-2" />
-                <Text className="text-md font-pmedium text-gray-100">
-                  {breedDetail.description}
+
+          {breedDetail && (
+            <View className="w-full flex gap-5">
+              {/* Breed Name with Icon */}
+              <View className="flex flex-col items-center bg-black-200 rounded-lg p-4 shadow-md">
+                <View className="flex flex-row justify-center border-b-2 border-gray-400 px-5">
+                  <Image
+                    source={icons[breedDetail.icon]}
+                    className="w-10 h-10 mr-4"
+                  />
+                  <Text className="text-3xl font-pbold text-white">
+                    {breedDetail.name}
+                  </Text>
+                </View>
+
+                <Text className="text-base font-psemibold text-secondary-200">
+                  {breedDetail.type}
                 </Text>
               </View>
 
-              <View className="flex flex-row items-center bg-black-200 rounded-lg p-4">
+              {/* Origin */}
+              <View className="flex justify-center bg-black-200 rounded-lg p-4 shadow-md">
                 <Text className="text-lg font-psemibold text-gray-100">
-                  Origin:{" "}
+                  Origin:
                 </Text>
-                <Text className="text-md font-pmedium text-gray-100">
+                <View className="border-t-2 border-gray-400 my-2" />
+                <Text className="text-md font-pmedium text-gray-300">
                   {breedDetail.origin}
                 </Text>
               </View>
 
-              <View className="flex bg-black-200 rounded-lg p-4">
+              {/* Purpose */}
+              <View className="flex justify-center bg-black-200 rounded-lg p-4 shadow-md">
                 <Text className="text-lg font-psemibold text-gray-100">
-                  Characteristics:{" "}
+                  Purpose:
                 </Text>
-                <View className="h-1 w-full bg-gray-500 rounded-full mb-2" />
-                {breedDetail.characteristics.map((char, index) => (
-                  <Text
-                    key={index}
-                    className="text-md font-pmedium text-gray-100"
-                  >{`- ${char}`}</Text>
-                ))}
+                <View className="border-t-2 border-gray-400 my-2" />
+                <Text className="text-md font-pmedium text-gray-300">
+                  {breedDetail.purpose}
+                </Text>
               </View>
+
+              {/* Physical Traits */}
+              <View className="flex justify-center bg-black-200 rounded-lg p-4 shadow-md">
+                <Text className="text-lg font-psemibold text-gray-100">
+                  Physical Traits:
+                </Text>
+                <View className="border-t-2 border-gray-400 my-2" />
+                <Text className="text-md font-pmedium text-gray-300">
+                  {breedDetail.physicalTraits}
+                </Text>
+              </View>
+
+              {/* Milk Yield */}
+              {breedDetail.milkYield && (
+                <View className="flex justify-center bg-black-200 rounded-lg p-4 shadow-md">
+                  <Text className="text-lg font-psemibold text-gray-100">
+                    Milk Yield:
+                  </Text>
+                  <View className="border-t-2 border-gray-400 my-2" />
+                  <Text className="text-md font-pmedium text-gray-300">
+                    {breedDetail.milkYield}
+                  </Text>
+                </View>
+              )}
+
+              {/* Special Feature */}
+              {breedDetail.specialFeature && (
+                <View className="flex justify-center bg-black-200 rounded-lg p-4 shadow-md">
+                  <Text className="text-lg font-psemibold text-gray-100">
+                    Special Feature:
+                  </Text>
+                  <View className="border-t-2 border-gray-400 my-2" />
+                  <Text className="text-md font-pmedium text-gray-300">
+                    {breedDetail.specialFeature}
+                  </Text>
+                </View>
+              )}
             </View>
-          ) : null}
+          )}
+
+          {/* Capture Again Button */}
           <CustomButton
             title="Capture Again"
             handlePress={() => router.push("/camerascreen")}
-            containerStyles="min-w-80 mt-10"
+            containerStyles="w-full mt-10 shadow-lg"
           />
         </View>
       </ScrollView>
