@@ -11,8 +11,8 @@ export default function WelcomeScreen() {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-primary">
-      <View className="flex-1 justify-center items-center px-4">
+    <SafeAreaView className="flex-1 bg-primary px-4">
+      <View className="flex-1 justify-center items-center">
         {/* Logo Section */}
         <View className="flex-row items-center gap-4 mb-6">
           <Image
@@ -20,7 +20,7 @@ export default function WelcomeScreen() {
             className="w-20 h-20"
             resizeMode="contain"
           />
-          <View className="flex items-center justify-centertext-center">
+          <View className="flex items-center justify-center text-center">
             <Text className="text-3xl font-pbold text-white">JAGRUTHI</Text>
             <Text className="text-sm text-white font-pregular">
               ಜಾನುವಾರು ಗುರುತಿಸಿ
@@ -31,33 +31,33 @@ export default function WelcomeScreen() {
         {/* Main Image */}
         <Image
           source={images.cards}
-          className="w-full max-w-[380px] h-[200px] mb-6"
+          className="w-full max-w-[360px] h-[200px] mb-8"
           resizeMode="contain"
         />
 
         {/* Title Section */}
-        <View className="relative mb-8">
-          <Text className="text-3xl font-bold text-white text-center">
+        <View className="relative mb-10">
+          <Text className="text-2xl font-bold text-white text-center leading-8">
             Identifying Breeds{"\n"}
             Empowering Care with{" "}
             <Text className="text-secondary-200">JAGRUTHI</Text>
           </Text>
           <Image
             source={images.path}
-            className="absolute w-36 h-4 -bottom-2 right-12"
+            className="absolute w-36 h-4 -bottom-2 right-10"
             resizeMode="contain"
           />
         </View>
 
         {/* Action Button */}
         <CustomButton
-          title="Let's get Started ! "
+          title=" Let's get Started ! "
           handlePress={() => router.push("/camerascreen")}
           containerStyles="w-full mt-10"
         />
 
         {/* Footer Text */}
-        <Text className="text-sm text-white font-pmedium mt-6 text-center">
+        <Text className="text-sm text-white font-pmedium mt-6 text-center px-2">
           ಜೆಎಸ್‌ಎಸ್‌ಎಟಿಇ ಬೆಂಗಳೂರು ಪ್ರಾಯೋಜಿತ
         </Text>
       </View>
