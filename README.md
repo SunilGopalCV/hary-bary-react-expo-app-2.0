@@ -1,50 +1,68 @@
-# Welcome to your Expo app 👋
+# 🐄 JAGRUTHI - Livestock Breed Identification App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+**Empowering Farmers with AI-driven Breed Detection**
 
-## Get started
+![App Banner](Readme_images/banner.png) <!-- Replace with actual image path -->
 
-1. Install dependencies
+## 🚀 Overview
 
-   ```bash
-   npm install
-   ```
+**JAGRUTHI** is an AI-powered mobile application built using **React Native** and **PyTorch** to accurately identify livestock breeds from images. The app is designed to assist farmers, veterinarians, and agricultural officers in recognizing various cattle and goat breeds, promoting better care and breeding strategies.
 
-2. Start the app
+- 📱 **Cross-platform mobile app**
+- 🧠 **EfficientNet-B2 based breed classification**
+- ☁️ **Dockerized backend deployed on Google Cloud**
+- 🤝 **Government-partnered initiative launched by the Agriculture Minister in Bidar**
 
-   ```bash
-    npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🎯 Features
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- 📷 **Upload or Capture Livestock Images**
+- 🧬 **Accurate Breed Prediction (96.3% Accuracy)**
+- 🌍 **Scalable & Reliable Deployment (99.9% Uptime)**
+- 📊 **Breed Details & Characteristics Displayed**
+- 🖼️ **Intuitive UI with Localization (Kannada Support)**
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 🛠️ Tech Stack
 
-When you're ready, run:
+| Frontend        | Backend           | Model Training        | Infrastructure        |
+|----------------|-------------------|------------------------|------------------------|
+| React Native    | Node.js + Express | PyTorch + EfficientNet-B2 | Google Cloud Run + Docker |
 
-```bash
-npm run reset-project
-```
+---
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🧠 Model Highlights
 
-## Learn more
+- 🏗️ **Architecture**: EfficientNet-B2 (pretrained)
+- 🧪 **Accuracy**: 96.3% on real-world validation set
+- 🗃️ **Classes**: Bidari, Deoni, Girr, Kenguri, Murra, Sirohi
+- 📊 **Metrics**:
+  - Precision: `X.XXX`
+  - Recall: `X.XXX`
+  - F1 Score: `X.XXX`
 
-To learn more about developing your project with Expo, look at the following resources:
+📁 [Model Training Code (Colab)](Model_Training.ipynb) | 📦 [Saved Model](model/effnetb2.pth)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+## 📸 App Screenshots
 
-Join our community of developers creating universal apps.
+| Home | Upload | Prediction |
+|------|--------|------------|
+| ![Home](Readme_images/home.jpg) | ![Upload](Readme_images/upload.jpg) | ![Prediction](Readme_images/result.jpg) |
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## 🏛️ Government Partnership
+
+> The app was proudly launched in **January 2025** in **Bidar**, Karnataka in partnership with the **Department of Agriculture**.
+
+![Launch Event](Readme_images/launch_event.jpg)
+
+## 📬 Contact
+If you'd like to collaborate, feel free to connect!
+
+**Sunil Gopal C V**
+
