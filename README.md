@@ -59,7 +59,7 @@
 
 > The app was proudly launched in **January 2025** in **Bidar**, Karnataka in partnership with the **Department of Agriculture**.
 
-![Launch Event](Readme_images/launch_event.jpg)
+![Launch Event](Readme_images/lauch_event.jpg)
 
 ## 📬 Contact
 If you'd like to collaborate, feel free to connect!
